@@ -1,0 +1,20 @@
+apply plugin:'application'
+mainClassName = "org.petuum.app.matrixfact.MatrixFact"
+
+// create a single Jar with all dependencies
+task fatJar(type: Jar) {
+	manifest {
+        attributes 'Main-Class': mainClassName
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+// In this section you declare the dependencies for your production and test code
+dependencies {
+    compile 'args4j:args4j:2.0.16'
+    compile project(':ps')
+
+    testCompile 'junit:junit:4.11'
+}
