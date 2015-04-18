@@ -34,5 +34,10 @@ public class MatrixFactCore {
             DoubleTable RTable, int LRowBegin, int LRowEnd, int RRowBegin,
             int RRowEnd, LossRecorder lossRecorder, int K, double lambda) {
         // TODO
+        double sqLoss = 0;
+        double totalLoss = 0;
+        lossRecorder.incLoss(ithEval, "SquareLoss", sqLoss);
+        lossRecorder.incLoss(ithEval, "FullLoss", totalLoss);
+        lossRecorder.incLoss(ithEval, "NumSamples", elemEnd - elemBegin);
     }
 }
