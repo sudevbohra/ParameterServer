@@ -20,6 +20,8 @@ public class MatrixFactCore {
     private static final Logger logger =
         LoggerFactory.getLogger(MatrixFactCore.class);
 
+    // Perform a single SGD on a rating and update LTable and RTable
+    // accordingly.
     public static void sgdOneRating(Rating r, double learningRate,
             DoubleTable LTable, DoubleTable RTable, int K, double lambda) {
         // TODO
@@ -27,7 +29,7 @@ public class MatrixFactCore {
 
     // Evaluate square loss on entries [elemBegin, elemEnd), and L2-loss on of
     // row [LRowBegin, LRowEnd) of LTable,  [RRowBegin, RRowEnd) of Rtable.
-    // Note the interval does not include LRowEnd and RRowEnd. Log the loss to
+    // Note the interval does not include LRowEnd and RRowEnd. Record the loss to
     // lossRecorder.
     public static void evaluateLoss(ArrayList<Rating> ratings, int ithEval,
             int elemBegin, int elemEnd, DoubleTable LTable,
