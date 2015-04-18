@@ -109,6 +109,7 @@ public class MatrixFactWorker implements Runnable {
         this.numMiniBatchesPerEpoch = config.numMiniBatchesPerEpoch;
 
         this.outputPrefix = config.outputPrefix;
+        this.staleness = config.staleness;
 
         lossRecorder.registerField("Epoch");
         lossRecorder.registerField("SquareLoss");   // SquareLoss only.
