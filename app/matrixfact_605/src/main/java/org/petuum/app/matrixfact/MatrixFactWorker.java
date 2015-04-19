@@ -126,7 +126,7 @@ public class MatrixFactWorker implements Runnable {
 
         // Similarly for RTable.
         int numColsPerThread = numCols / numWorkers;
-        RRowBegin = numRowsPerThread * workerRank;
+        RRowBegin = numColsPerThread * workerRank;
         RRowEnd = workerRank == numWorkers - 1 ? numCols :
             RRowBegin + numColsPerThread;
     }
