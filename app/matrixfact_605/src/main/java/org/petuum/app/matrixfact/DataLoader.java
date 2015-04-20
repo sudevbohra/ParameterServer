@@ -12,12 +12,8 @@ public class DataLoader {
     // Return dimension [numRows, numCols]
     public static int[] ReadData(String dataFile, ArrayList<Rating> X) {
         X.clear();
-        BufferedReader br = null;
         int[] dim = new int[2];
-        dim[0] = 0;
-        dim[1] = 0;
-        try {
-            br = new BufferedReader(new FileReader(dataFile));
+        try (BufferedReader br = new BufferedReader(new FileReader(dataFile))) {
             String currLine;
             while ((currLine = br.readLine()) != null) {
                 String[] fields = currLine.split(" ");
@@ -32,14 +28,6 @@ public class DataLoader {
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(-1);
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
         }
         return dim;
     }
