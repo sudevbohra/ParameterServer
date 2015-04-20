@@ -275,7 +275,7 @@ public class MatrixFactWorker implements Runnable {
         PsTableGroup.globalBarrier();
 
         // Elements assigned to other machine. We will evaluate on other
-        // thread's data since local stale parameter is "overfitted" to the
+        // node's data since local stale parameter is "overfitted" to the
         // ratings in a worker's data partition.
         int workerRankOther = (workerRank + numThreads) % numWorkers;
         int elemBeginOther = workerRankOther * numElemsPerWorker;
@@ -288,8 +288,6 @@ public class MatrixFactWorker implements Runnable {
             Timer epochTimer = new Timer();
             double learningRate = learningRateEta0 *
                 Math.pow(learningRateDecay, epoch - 1);
-            //double learningRate = learningRateEta0 /
-            //    Math.sqrt(epoch + learningRateDecay);
             for (int batch = 0; batch < numMiniBatchesPerEpoch; ++batch) {
                 int elemMiniBatchBegin = elemBegin +
                     batch * numElemsPerMiniBatch;
@@ -300,7 +298,7 @@ public class MatrixFactWorker implements Runnable {
                     Rating r = ratings.get(ratingId);
                     MatrixFactCore.sgdOneRating(r, learningRate, LTable,
                             RTable, K, lambda);
-                        }
+                }
                 PsTableGroup.clock();   // clock every miniBatch.
             }
 
