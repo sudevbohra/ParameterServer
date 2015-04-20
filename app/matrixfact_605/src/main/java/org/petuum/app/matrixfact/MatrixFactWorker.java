@@ -274,9 +274,10 @@ public class MatrixFactWorker implements Runnable {
         initLR(LTable, RTable, elemBegin, elemEnd);
         PsTableGroup.globalBarrier();
 
-        // Elements assigned to other machine.
-        //int workerRankOther = (workerRank + numThreads) % numWorkers;
-        int workerRankOther = (workerRank) % numWorkers;
+        // Elements assigned to other machine. We will evaluate on other
+        // thread's data since local stale parameter is "overfitted" to the
+        // ratings in a worker's data partition.
+        int workerRankOther = (workerRank + numThreads) % numWorkers;
         int elemBeginOther = workerRankOther * numElemsPerWorker;
         int elemEndOther = (workerRankOther == numWorkers - 1) ?
             ratings.size() : elemBeginOther + numElemsPerWorker;
