@@ -248,6 +248,7 @@ public class MatrixFactWorker implements Runnable {
     }
 
     // Main worker thread logic.
+    @Override
     public void run() {
         // Let PS know this thread wants to interact with it.
         PsTableGroup.registerThread();
