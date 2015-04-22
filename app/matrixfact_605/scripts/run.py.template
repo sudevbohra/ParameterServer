@@ -16,17 +16,17 @@ java_heap_size = "4g"
 
 # Program parameters
 params = {
-  "numWorkerThreads": 4
-  , "numMiniBatchesPerEpoch": 5
-  , "staleness": 0
-  , "numEpochs": 10
-  , "K": 100
-  , "lambda": 0.05
-  , "learningRateDecay": 0.995
-  , "learningRateEta0": 2.5e-4
-  , "outputPrefix": output_prefix
-  , "dataFile": data_file
-}
+    "numWorkerThreads": 4
+    , "numMiniBatchesPerEpoch": 5
+    , "staleness": 0
+    , "numEpochs": 10
+    , "K": 100
+    , "lambda": 0.05
+    , "learningRateDecay": 0.995
+    , "learningRateEta0": 2.5e-4
+    , "outputPrefix": output_prefix
+    , "dataFile": data_file
+  }
 
 jar_file = join(app_dir, "build", "libs", "matrixfact_605-all.jar")
 host_file = join(proj_dir, "machinefile", host_file_name)
@@ -47,8 +47,11 @@ exp_name += ".D" + str(params["learningRateDecay"])
 exp_name += ".e" + str(params["learningRateEta0"])
 os.system("mkdir -p " + dirname(params["outputPrefix"]))
 
-ssh_cmd = "ssh -oStrictHostKeyChecking=no" \
-  + " -oUserKnownHostsFile=/dev/null -oLogLevel=quiet "
+ssh_cmd = (
+    "ssh -oStrictHostKeyChecking=no "
+    "-oUserKnownHostsFile=/dev/null "
+    "-oLogLevel=quiet "
+    )
 
 for ip in host_ips:
   cmd = ssh_cmd + ip + " pkill -6 -f org.petuum.app"
