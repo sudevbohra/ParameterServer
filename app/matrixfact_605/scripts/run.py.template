@@ -50,7 +50,7 @@ os.system("mkdir -p " + dirname(params["outputPrefix"]))
 ssh_cmd = (
     "ssh -oStrictHostKeyChecking=no "
     "-oUserKnownHostsFile=/dev/null "
-    "-oLogLevel=quiet "
+    #"-oLogLevel=quiet "
     )
 
 for ip in host_ips:
