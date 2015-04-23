@@ -48,8 +48,10 @@ exp_name += ".e" + str(params["learningRateEta0"])
 os.system("mkdir -p " + dirname(params["outputPrefix"]))
 
 ssh_cmd = (
-    "ssh -oStrictHostKeyChecking=no "
-    "-oUserKnownHostsFile=/dev/null "
+    "ssh "
+    #" -i ~/.ssh/aws_virginia.pem "
+    "-o StrictHostKeyChecking=no "
+    "-o UserKnownHostsFile=/dev/null "
     #"-oLogLevel=quiet "
     )
 
