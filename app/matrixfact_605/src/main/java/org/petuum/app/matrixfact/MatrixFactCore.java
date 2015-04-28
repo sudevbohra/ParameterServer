@@ -47,7 +47,7 @@ public class MatrixFactCore {
         double n = lRow.getUnlocked(K);
         double m =  rRow.getUnlocked(K);
         //calculate gradientL and gradientR
-        double e_ij = value - dot(lRow,rRow);
+        double e_ij = value - dot(lRow,rRow, K);
 
         DoubleRowUpdate gradientL_updates = new DenseDoubleRowUpdate(K+1);
         for (int i = 0; i < K; i++) {
@@ -99,7 +99,7 @@ public class MatrixFactCore {
             DoubleRow rRowGet = RTable.get(r.prodId);
             rRow.reset(rRowGet);
 
-            double p = dot(lRow,rRow);
+            double p = dot(lRow,rRow, K);
             double diff = r.rating -p;
             sqLoss += (diff*diff);
         }
