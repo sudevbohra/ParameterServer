@@ -66,7 +66,7 @@ public class MatrixFactCore {
     }
 
 
-    public static double dot(DoubleRow lRow, DoubleRow rRow, K) {
+    public static double dot(DoubleRow lRow, DoubleRow rRow, int K) {
         float sum = 0;
         for (int i = 0; i < K; i++) {
             sum += lRow.getUnlocked(i)*rRow.getUnlocked(i);
@@ -112,7 +112,7 @@ public class MatrixFactCore {
         lossRecorder.incLoss(ithEval, "NumSamples", elemEnd - elemBegin);
     }
 
-    public static double sqFrobenius(DoubleTable table, K){
+    public static double sqFrobenius(DoubleTable table, int K){
         double sum = 0;
 
         for (int i = 0; i < K; i++) {
