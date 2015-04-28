@@ -47,7 +47,7 @@ public class MatrixFactCore {
         double n = lRow.getUnlocked(K);
         double m =  rRow.getUnlocked(K);
         //calculate gradientL and gradientR
-        double e_ij = value - dot(lRow,rRow)
+        double e_ij = value - dot(lRow,rRow);
 
         DoubleRowUpdate gradientL_updates = new DenseDoubleRowUpdate(K+1);
         for (int i = 0; i < K; i++) {
