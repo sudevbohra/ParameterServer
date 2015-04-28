@@ -122,7 +122,7 @@ public class MatrixFactCore {
 
             for (int j = 0; j < K; j++) {
                 double val = lRow.getUnlocked(j);
-                sum += val*val
+                sum += val*val;
             }
         }
 
