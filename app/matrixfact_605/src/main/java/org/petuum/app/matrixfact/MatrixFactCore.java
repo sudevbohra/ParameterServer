@@ -15,7 +15,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
-import java.lang.math.*;
+import java.lang.Math;
 
 public class MatrixFactCore {
     private static final Logger logger =
@@ -54,14 +54,14 @@ public class MatrixFactCore {
             double delta = 2*learningRate*(e_ij*rRow.getUnlocked(i)-(lambda/n)*lRow.getUnlocked(i));
             gradientL_updates.setUpdate(i, delta);
         }
-        lTable.batchInc(r.userId, gradientL_updates);
+        LTable.batchInc(r.userId, gradientL_updates);
 
         DoubleRowUpdate gradientR_updates = new DenseDoubleRowUpdate(K+1);
         for (int i = 0; i < K; i++) {
             double delta = 2*learningRate*(e_ij*lRow.getUnlocked(i)-(lambda/m)*rRow.getUnlocked(i));
             gradientR_updates.setUpdate(i, delta);
         }
-        rTable.batchInc(r.prodId, gradientR_updates);
+        RTable.batchInc(r.prodId, gradientR_updates);
         // add gradient*learning to L and R
     }
 
@@ -88,7 +88,7 @@ public class MatrixFactCore {
         //Square loss:
         double sqLoss = 0;
         for (int i = elemBegin; i < elemEnd; i++) {
-            Rating r = ratings[i];
+            Rating r = ratings.get(i);
             DoubleRow lRow = new DenseDoubleRow(K+1);
             DoubleRow lRowGet = LTable.get(r.userId);
             lRow.reset(lRowGet);
