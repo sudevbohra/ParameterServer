@@ -117,7 +117,7 @@ public class MatrixFactCore {
 
         for (int i = 0; i < K; i++) {
             DoubleRow lRow = new DenseDoubleRow(K+1);
-            DoubleRow lRowGet = LTable.get(i);
+            DoubleRow lRowGet = table.get(i);
             lRow.reset(lRowGet);
 
             for (int j = 0; j < K; j++) {
