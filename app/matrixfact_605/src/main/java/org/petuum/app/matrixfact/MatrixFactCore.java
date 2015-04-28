@@ -105,7 +105,7 @@ public class MatrixFactCore {
         }
 
         double totalLoss = sqLoss;
-        totalLoss += lambda*(sqFrobenius(LTable) + sqFrobenius(RTable));
+        totalLoss += lambda*(sqFrobenius(LTable, K) + sqFrobenius(RTable, K));
       
         lossRecorder.incLoss(ithEval, "SquareLoss", sqLoss);
         lossRecorder.incLoss(ithEval, "FullLoss", totalLoss);
